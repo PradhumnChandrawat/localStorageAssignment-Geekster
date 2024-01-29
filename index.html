@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Card Project</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      #userForm {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #2980b9;
+      }
+
+      #userCard {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        gap: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="userForm">
+      <input type="text" id="name" placeholder="Full name" />
+      <input type="tel" id="phone" placeholder="Phone No" />
+      <input type="email" id="email" placeholder="Email" />
+      <input type="text" id="city" placeholder="City name" />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <div id="userCard"></div>
+
+    <script>
+      window.onload = function () {
+        // Check if there is data in localStorage
+        var storedName = localStorage.getItem("name");
+        var storedPhone = localStorage.getItem("phone");
+        var storedEmail = localStorage.getItem("Email");
+        var storedCity = localStorage.getItem("city");
+
+        // Update user card if data is present
+        if (storedName && storedPhone && storedEmail && storedCity) {
+          document.getElementById("userCard").innerHTML =
+            "Name: " +
+            storedName +
+            "<br>Phone: " +
+            storedPhone +
+            "<br>Email: " +
+            storedEmail +
+            "<br>City: " +
+            storedCity;
+        }
+      };
+
+      document
+        .getElementById("userForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var name = document.getElementById("name").value;
+          var phone = document.getElementById("phone").value;
+          var email = document.getElementById("email").value;
+          var city = document.getElementById("city").value;
+
+          localStorage.setItem("name", name);
+          localStorage.setItem("phone", phone);
+          localStorage.setItem("Email", email);
+          localStorage.setItem("city", city);
+
+          document.getElementById("userCard").innerHTML =
+            "Name: " +
+            name +
+            "<br>Phone: " +
+            phone +
+            "<br>Email: " +
+            email +
+            "<br>City: " +
+            city;
+        });
+    </script>
+  </body>
+</html>
